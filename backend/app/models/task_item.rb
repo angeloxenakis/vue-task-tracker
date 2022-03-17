@@ -1,0 +1,2 @@
+class TaskItem < ApplicationRecord
+end
