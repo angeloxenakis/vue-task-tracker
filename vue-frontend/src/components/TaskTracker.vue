@@ -1,8 +1,11 @@
 <template>
-  <div class="task-tracker">
-    <AppHeader/>
-    <TaskItemList/>
-  </div>
+<div>
+    <div class="task-tracker">
+      <AppHeader/>
+      <TaskItemList/>
+    </div>
+</div>
+
 </template>
 
 <script>
@@ -22,6 +25,7 @@ export default {
 .task-tracker {
     width: 45%;
     margin: auto;
-    border: 1px solid gray;
+    padding: 16px;
+    border: 1px solid rgb(192, 192, 192);
 }
 </style>
