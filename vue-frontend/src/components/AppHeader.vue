@@ -1,12 +1,9 @@
 <template>
-    <div>
+    <v-container>
         <div class="title">
             <h1>Vue Task Tracker</h1>
         </div>
-        <div class="tool-bar">
-            <button>Create Task</button>
-        </div>
-    </div>
+    </v-container>
 </template>
 
 <script>
