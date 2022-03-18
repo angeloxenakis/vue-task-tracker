@@ -23,7 +23,7 @@ export default {
 
 <style scoped>
 .task-tracker {
-    width: 45%;
+    width: 50%;
     margin: auto;
     padding: 16px;
     border: 1px solid rgb(192, 192, 192);
