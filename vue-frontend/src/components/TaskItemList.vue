@@ -16,8 +16,8 @@
             <v-simple-checkbox v-model="item.completed"/>
         </template>
         <template v-slot:[`item.actions`]="{ item }">
-            <v-icon class="mr-2" @click="deleteItem(item)">mdi-pencil</v-icon>
-            <v-icon class="mr-2" @click="deleteItem(item)">mdi-delete</v-icon>
+            <v-icon class="mr-2">mdi-pencil</v-icon>
+            <v-icon class="mr-2" @click="deleteTask(item)">mdi-delete</v-icon>
         </template>
     </v-data-table>
 </v-card>
@@ -44,8 +44,8 @@ export default {
         }
     },
     methods: {
-        deleteItem(item) {
-            console.log(item)
+        deleteTask(taskItem) {
+            this.$store.dispatch('deleteTask', taskItem)
         }
     }
 }
