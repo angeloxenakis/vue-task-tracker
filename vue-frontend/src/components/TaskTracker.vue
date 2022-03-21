@@ -9,14 +9,14 @@
 </template>
 
 <script>
-import TaskItemList from "./TaskItemList.vue"
 import AppHeader from "./AppHeader.vue"
+import TaskItemList from "./TaskItemList.vue"
 
 export default {
     name: 'TaskTracker',
     components: {
-        TaskItemList,
-        AppHeader
+        AppHeader,
+        TaskItemList
     }
 }
 </script>
