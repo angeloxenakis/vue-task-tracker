@@ -9,11 +9,11 @@
             hide-details
         ></v-text-field>
         <v-spacer/>
-        <v-btn  color="primary">+</v-btn>
+        <v-btn color="primary">+</v-btn>
     </v-card-title>
-    <v-data-table :headers="headers" :items="taskItems" :items-per-page="5" :search="search">
+    <v-data-table :headers="attrs" :items="taskItems" :items-per-page="5" :search="search">
         <template v-slot:[`item.completed`]="{ item }">
-            <v-simple-checkbox v-model="item.completed"/>
+            <v-simple-checkbox @click="completeTask(item)" v-model="item.completed"/>
         </template>
         <template v-slot:[`item.actions`]="{ item }">
             <v-icon class="mr-2">mdi-pencil</v-icon>
@@ -33,7 +33,7 @@ export default {
     },
     data() {
         return {
-            headers: [
+            attrs: [
                 {text: "Task", value: 'name', align: 'start'},
                 {text: "Priority", value: 'priority'},
                 {text: "Due Date", value: 'due_date'},
@@ -44,6 +44,10 @@ export default {
         }
     },
     methods: {
+        completeTask(taskItem) {
+            console.log(taskItem)
+            this.$store.dispatch('completeTask', taskItem)
+        },
         deleteTask(taskItem) {
             this.$store.dispatch('deleteTask', taskItem)
         }
@@ -55,5 +59,4 @@ export default {
 .search-bar{
     width: 60%;
 }
-
 </style>

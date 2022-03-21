@@ -17,6 +17,14 @@ export default new Vuex.Store({
         },
         DELETE_TASK: (state, taskItemId) => {
             state.taskItems = state.taskItems.filter(taskItem => taskItem.id != taskItemId)
+        },
+        COMPLETE_TASK: (state, taskItemId) => {
+            state.taskItems = state.taskItems.map(taskItem => {
+                if (taskItem.id === taskItemId) {
+                    return Object.assign({}, taskItem, !taskItem.completed )
+                }
+                return taskItem
+            })
         }
     },
     actions: {
@@ -25,15 +33,16 @@ export default new Vuex.Store({
                 commit('GET_TASKS', resp.data)
             })
         },
-        // deleteTaskItem({commit}, { taskItem }) {
-        //     console.log(taskItem)
-        //     axios.delete(`http://localhost:3000/task_items/${taskItem.id}`).then((taskItem) => {
-        //         commit('DELETE_TASK', taskItem.id)
-        //     })
-        // },
-        async deleteTask({commit}, taskItem) {
+        async completeTask({ commit }, taskItem) {
+            console.log(taskItem)
+            axios.patch(`http://localhost:3000/task_items/${taskItem.id}`,
+                {completed: taskItem.completed}
+            )
+            commit('COMPLETE_TASK', taskItem.id)
+        },
+        async deleteTask({ commit }, taskItem) {
             let response = await axios.delete(`http://localhost:3000/task_items/${taskItem.id}`);
-            if(response.status == 200 || response.status == 204){
+            if(response.status == 200 || response.status == 204) {
               commit('DELETE_TASK', taskItem.id);
             }
         },
