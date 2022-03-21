@@ -34,7 +34,6 @@ export default new Vuex.Store({
             })
         },
         async completeTask({ commit }, taskItem) {
-            console.log(taskItem)
             axios.patch(`http://localhost:3000/task_items/${taskItem.id}`,
                 {completed: taskItem.completed}
             )
@@ -43,7 +42,7 @@ export default new Vuex.Store({
         async deleteTask({ commit }, taskItem) {
             let response = await axios.delete(`http://localhost:3000/task_items/${taskItem.id}`);
             if(response.status == 200 || response.status == 204) {
-              commit('DELETE_TASK', taskItem.id);
+                commit('DELETE_TASK', taskItem.id);
             }
         },
     }

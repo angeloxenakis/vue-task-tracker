@@ -24,12 +24,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
 export default {
     name: 'TaskItemList',
     computed: {
-        taskItems() {
-            return this.$store.getters.allTasks
-        }
+        ...mapGetters({
+            taskItems: 'allTasks'
+        })
     },
     data() {
         return {
@@ -45,7 +46,6 @@ export default {
     },
     methods: {
         completeTask(taskItem) {
-            console.log(taskItem)
             this.$store.dispatch('completeTask', taskItem)
         },
         deleteTask(taskItem) {
