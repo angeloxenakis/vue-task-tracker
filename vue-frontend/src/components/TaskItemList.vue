@@ -9,7 +9,7 @@
             hide-details
         ></v-text-field>
         <v-spacer/>
-        <v-btn color="primary">+</v-btn>
+        <TaskModal/>
     </v-card-title>
     <v-data-table :headers="attrs" :items="taskItems" :items-per-page="5" :search="search">
         <template v-slot:[`item.completed`]="{ item }">
@@ -25,12 +25,17 @@
 
 <script>
 import { mapGetters } from "vuex"
+import TaskModal from "./TaskModal.vue"
+
 export default {
     name: 'TaskItemList',
     computed: {
         ...mapGetters({
             taskItems: 'allTasks'
         })
+    },
+    components: {
+        TaskModal
     },
     data() {
         return {
@@ -42,6 +47,7 @@ export default {
                 {text: "Actions", value: 'actions', sortable: false},
             ],
             search: '',
+            showModal: true
         }
     },
     methods: {
@@ -58,5 +64,9 @@ export default {
 <style scoped>
 .search-bar{
     width: 60%;
+}
+
+.task-modal {
+    display: none;
 }
 </style>
